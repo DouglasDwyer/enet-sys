@@ -22,7 +22,11 @@ fn main() {
         .write_to_file(out_path.join("bindings.rs"))
         .expect("Couldn't write bindings!");
 
-    let dst = Config::new("vendor/enet").build();
+    let dst = Config::new("vendor/enet")
+        .define("ENET_STATIC", "1")
+        .define("ENET_TEST", "0")
+        .profile("Release")
+        .build();
 
     eprintln!("LUL: {}", dst.display());
 
@@ -30,6 +34,6 @@ fn main() {
         println!("cargo:rustc-link-lib=dylib=winmm");
     }
 
-    println!("cargo:rustc-link-search=native={}/lib/static", dst.display());
+    println!("cargo:rustc-link-search=native={}/build/Release", dst.display());
     println!("cargo:rustc-link-lib=static=enet");
 }
