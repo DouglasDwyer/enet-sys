@@ -9,5 +9,5 @@ links = "enet"
 build = "build.rs"
 
 [build-dependencies]
-bindgen = { version = "0.65.1", default-features = false, features = [ "runtime" ] }
-cmake = { version = "0.1.44", default-features = false }
+bindgen = { version = "0.71.1", default-features = false, features = [ "runtime" ] }
+cmake = { version = "0.1.52", default-features = false }

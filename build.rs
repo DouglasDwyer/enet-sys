@@ -9,11 +9,12 @@ fn main() {
     let target = env::var("TARGET").unwrap();
     let bindings = bindgen::Builder::default()
         .clang_arg("-Ivendor/enet/include/")
-        .header("wrapper.h")
+        .header("vendor/enet/include/enet.h")
         .derive_debug(false)
+        .allowlist_function("enet_.*")
+        .allowlist_type("ENet.*")
         .blocklist_type("ENetPacket")
         .blocklist_type("_ENetPacket")
-        .blocklist_type("_?P?IMAGE_TLS_DIRECTORY.*")
         .generate()
         .expect("Unable to generate bindings");
 
