@@ -33,8 +33,11 @@ fn main() {
 
     if target.contains("windows") {
         println!("cargo:rustc-link-lib=dylib=winmm");
+        println!("cargo:rustc-link-search=native={}/build/Release", dst.display());
+    }
+    else {
+        println!("cargo:rustc-link-search=native={}/lib", dst.display());
     }
 
-    println!("cargo:rustc-link-search=native={}/build/Release", dst.display());
     println!("cargo:rustc-link-lib=static=enet");
 }
