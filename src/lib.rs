@@ -4,7 +4,7 @@
 #![allow(improper_ctypes)]
 #![allow(deref_nullptr)]
 
-include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
+include!("bindings.rs");
 
 /// enet size_t type alias for keeping compatible with previous
 /// versions of this crate.
