@@ -13,13 +13,14 @@ fn main() {
         .clang_arg("-Ivendor/enet6/include/")
         .header("wrapper.h")
         .derive_debug(false)
+        .allowlist_function("enet_.*")
+        .allowlist_type("ENet.*")
         .blocklist_type("ENetPacket")
         .blocklist_type("_ENetPacket")
-        .blocklist_type("_?P?IMAGE_TLS_DIRECTORY.*")
         .generate()
         .expect("Unable to generate bindings");
 
-        let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
+        let out_path = PathBuf::from(env::var("CARGO_MANIFEST_DIR").unwrap()).join("src");
         bindings
             .write_to_file(out_path.join("bindings.rs"))
             .expect("Couldn't write bindings!");
