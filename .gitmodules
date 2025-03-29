@@ -1,3 +1,0 @@
-[submodule "vendor/enet6"]
-	path = vendor/enet6
-	url = https://github.com/SirLynix/enet6
